@@ -1,19 +1,22 @@
-![](res/CDBQuery.png)
+![](./res/CDBQuery.png)
 
 **CDBQuery 是用c++编写的跨平台数据库操作框架，目前支持MySQL，Postgresql，SQLite三种数据库**
 
 # Features
-* 使用IO多路复用技术，支持select、poll及epoll
-* 基于异步事件，支持信号事件、超时事件及读写事件
-* 使用线程池来支持多线程
-* 使用c++11及c++14新特性，基本上全部使用智能指针进行资源管理
-* 支持http协议1.0/1.1，支持长短连接，并能优雅关闭连接
-* 仅支持Linux
-* 使用连接池来复用连接以提高效率
-* 增加异步日志系统，利用空闲缓冲池队列来进行异步日志系统性能优化
+* 使用c++11新特性，支持可变模块参数传参，传参简洁
+* 目前支持 SQL 预处理执行和直接执行两种操作
+* 最底层使用数据库连接池进行封装，上层从连接池中取数据库连接句柄，实现数据库连接复用，提高效率
+* 获取数据库连接句柄前都会对连接是否正常进行判断，提高框架稳定性
+* 使用 CDBQuery 操作类前，必须先设置 CDBPool 连接池类的账号密码，并创建连接，首次创建的连接池作为默认连接池使用
+* CDBPool 连接池在创建前可以设置最大连接数和最小连接数，默认 3~10 个连接，然后由底层动态调整连接数实际数量，不足就创建，过多就删除释放
+* 支持Linux和windows（目前所有文件都是跨平台的，后续添加windows编译文件）
 
-**WARNING: There's bugs in this project**
-> When benched with webbench.c for high concurrency for more than 60 seconds, the code may corupt.
+**WARNING: **
+> 目前linux版库使用 Ubuntu 16.0.4，若是 centos 等其他系统，需要替换lib文件下的动态库
+> 默认是直接支持 MySQL，Postgresql，SQLite 数据库，若不需要支持某数据库或者找不到对应的动态库，需要修改Makefile，
+> 屏蔽对应行数内容即可 	CCFLAGS += -D ORM_OF_PGSQL
+> 						CCFLAGS += -D ORM_OF_MYSQL
+> 						CCFLAGS += -D ORM_OF_PGSQL
 
 # Building
 ```

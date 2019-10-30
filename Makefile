@@ -25,7 +25,10 @@ CFLAGS += --std=c99
 CCFLAGS  = $(COMFLAGS)
 CCFLAGS += -std=c++11  
 CCFLAGS += -Wno-deprecated	
-CCFLAGS += -D linux -D ORM_OF_MYSQL -D ORM_OF_PGSQL -D ORM_OF_SQLITE
+CCFLAGS += -D linux
+CCFLAGS += -D ORM_OF_MYSQL
+CCFLAGS += -D ORM_OF_PGSQL
+CCFLAGS += -D ORM_OF_SQLITE
 CCFLAGS += 
 
 #-g: 	在对象文件中生成调试信息
