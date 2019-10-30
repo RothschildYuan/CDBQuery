@@ -9,6 +9,7 @@
 * 获取数据库连接句柄前都会对连接是否正常进行判断，提高框架稳定性
 * 使用 CDBQuery 操作类前，必须先设置 CDBPool 连接池类的账号密码，并创建连接，首次创建的连接池作为默认连接池使用
 * CDBPool 连接池在创建前可以设置最大连接数和最小连接数，默认 3~10 个连接，然后由底层动态调整连接数实际数量，不足就创建，过多就删除释放
+* 当前实现了数据量操作的五种赋值方式，下面 sqlSelect() 用例有五种赋值方式的示范说明
 * 支持Linux和windows（目前所有文件都是跨平台的，后续添加windows编译文件）
 
 **WARNING: **
@@ -289,16 +290,6 @@ int sqlSelect()
 //        audit.clear();
 
         // 第四种赋值方式（通过 set 赋值）
-        audit.id               = query.getValue("id");
-        audit.securitycheck_id = query.getValue("securitycheck_id");
-        audit.audit_type       = query.getValue("audit_type");
-        audit.audit_id         = query.getValue("audit_id");
-        audit.audit_uname      = string(query.getValue("audit_uname"));
-        audit.audit_nickname   = string(query.getValue("audit_nickname"));
-        audit.audit_time       = string(query.getValue("audit_time"));
-        audit.audit_result     = query.getValue("audit_result");
-        audit.audit_explains   = string(query.getValue("audit_explains"));
-
         audit.setId               (query.getValue("id"));
         audit.setSecuritycheck_id (query.getValue("securitycheck_id"));
         audit.setAudit_type       (query.getValue("audit_type"));
