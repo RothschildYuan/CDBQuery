@@ -1,7 +1,7 @@
 #include "CDBPool.h"
 
 #include "CDBQuery.h"
-
+#include "CDBConnPool.h"
 #include "CDBTypeUserInfo.h"
 
 extern CDBConnPool*                g_defPool;

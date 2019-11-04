@@ -3,6 +3,7 @@
 #include <exception>
 #include <stdexcept>
 
+#include "CDBConnPool.h"
 #include "CDBPool.h"
 
 CDBConnPool*                g_defPool  = nullptr;

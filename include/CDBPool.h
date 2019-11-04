@@ -1,7 +1,10 @@
 ﻿#ifndef CDBPOOL_H
 #define CDBPOOL_H
 
-#include "CDBConnPool.h"
+#include "stdtype.h"
+#include "configure.h"
+
+class CDBConnPool;
 
 class ACT_CPP_DLL_API CDBPool
 {

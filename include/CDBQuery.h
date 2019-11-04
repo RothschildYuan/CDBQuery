@@ -1,9 +1,10 @@
 ﻿#ifndef CDBQUERY_H
 #define CDBQUERY_H
 
-#include "CDBConnPool.h"
+#include "CDBConnect.h"
 
 class CDBPool;
+class CDBConnPool;
 
 class ACT_CPP_DLL_API CDBQuery
 {
