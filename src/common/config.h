@@ -9,11 +9,10 @@
 #include <sys/stat.h>
 #include <sys/timeb.h>
 #include <fcntl.h>
-
-#include <string>
-#include <iostream>
-#include <sstream>
-#include <algorithm>
+#include <stdint.h>
+#include <assert.h>
+#include <signal.h>
+#include <math.h>
 
 #ifdef __linux__
 
@@ -21,13 +20,24 @@
     #include <unistd.h>
     #include <arpa/inet.h>
     #include <sys/socket.h>
-    #include <netinet/in.h>
+    #include <sys/poll.h>
+    #include <sys/select.h>
+    #include <sys/epoll.h>
     #include <sys/ioctl.h>
+    #include <sys/wait.h>
+	#include <sys/time.h>
+    #include <sys/timerfd.h>
+    #include <sys/eventfd.h>
+    #include <netinet/in.h>
+    #include <netinet/tcp.h>
     #include <net/if.h>
     #include <errno.h>
     #include <netdb.h>
     #include <iconv.h>
-    #include <semaphore.h>
+
+    #include <ctype.h>
+    #include <strings.h>
+    #include <pthread.h>
 
     #define Sleep(x)        usleep((x) * 1000)
 
@@ -57,11 +67,9 @@
     #define strcasecmp      _stricmp
     #define strncasecmp     _strnicmp
 
-typedef NULL nullptr;
-	
 inline char * strcasestr(const char* src,const char* need){
-    if(nullptr == src || nullptr == need) {
-        return nullptr;
+    if(NULL == src || NULL == need) {
+        return NULL;
     }
     size_t len = strlen(need);
     int low = tolower(*need);

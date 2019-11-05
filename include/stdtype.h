@@ -44,6 +44,7 @@ typedef void*                   Pointer;
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <strstream>
 #include <string>
 #include <vector>
@@ -55,6 +56,8 @@ typedef void*                   Pointer;
 #include <stdexcept>
 #include <typeinfo>
 #include <functional>
+#include <algorithm>
+#include <iomanip>
 
 #define SDelete(p)  if(p != nullptr) { delete p;    p = nullptr;}
 #define SDeletes(p) if(p != nullptr) { delete[] p;  p = nullptr;}
@@ -70,20 +73,26 @@ using   std::stringstream;
 
 using   std::cout;
 using   std::endl;
+using   std::cerr;
+using   std::flush;
 
 using   std::function;
 using   std::forward;
 using   std::make_pair;
 
 using   std::string;
+using   std::wstring;
 using   std::vector;
 using   std::deque;
 using   std::list;
 using   std::map;
 using   std::set;
+using   std::ios;
+using   std::ios_base;
 using   std::exception;
 
 typedef string*     PString;
+typedef wstring*     PWstring;
 
 #define PVector     vector*
 #define PDeque      deque*
@@ -97,13 +106,24 @@ typedef string*     PString;
 #include <unordered_set>
 #include <functional>
 #include <mutex>
+#include <thread>
+#include <atomic>
+#include <condition_variable>
 
 using   std::unordered_map;
 using   std::unordered_set;
 using   std::shared_ptr;
 using   std::weak_ptr;
 
-typedef std::mutex ACTMutex;
+using   std::atomic_bool;
+using   std::atomic_int;
+using   std::mutex;
+using   std::thread;
+using   std::condition_variable;
+
+typedef std::mutex              ACTMutex;
+typedef std::thread             ACTThread;
+typedef std::condition_variable ACTCond;
 
 #else
 
@@ -113,12 +133,18 @@ typedef std::mutex ACTMutex;
 #include <boost/unordered_set.hpp>
 #include <boost/function.hpp>
 #include <CMutex.h>
+#include <CThread.h>
+#include <CCond.h>
 
 using   boost::unordered::unordered_map;
 using   boost::unordered::unordered_set;
 using   boost::shared_ptr;
 using   boost::weak_ptr;
-typedef ACT::CMutex ACTMutex;
+typedef ACT::CMutex     ACTMutex;
+typedef ACT::CThread    ACTThread;
+typedef ACT::CCond      ACTCond;
+
+using   ACT::unique_lock;
 
 #define nullptr			NULL
 #define override
@@ -151,8 +177,8 @@ typedef unsigned int            PthreadSize;
 #else
 
 typedef unsigned int            PthreadSize;
-typedef int SOCKET;
-#define INVALID_SOCKET  (SOCKET)(~0)
+typedef int                     SOCKET;
+#define INVALID_SOCKET  (SOCKET)(-1)
 #define SOCKET_ERROR            (-1)
 
 #endif
