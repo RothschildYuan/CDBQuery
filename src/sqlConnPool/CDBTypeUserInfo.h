@@ -2,10 +2,9 @@
 #define CDBTYPEUSERINFO_H
 
 #include <string>
-
 #include "configure.h"
 
-using   std::string;
+using std::string;
 
 enum DBType{
     DBTypeMysql,        // Mysql

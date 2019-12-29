@@ -10,7 +10,7 @@ public:
     CSecurity_audit();
 
     void clear();
-
+    
     int getId() const
     {
         return id;

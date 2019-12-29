@@ -10,7 +10,7 @@ using namespace std;
 
 #define MYSQL_DBHOST "127.0.0.1"
 #define MYSQL_DBUSER "root"
-#define MYSQL_DBPSWD "4701641"
+#define MYSQL_DBPSWD "123456"
 #define MYSQL_DBNAME "act"
 #define MYSQL_DBPORT 3306
 
